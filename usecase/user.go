@@ -14,6 +14,6 @@ func NewUserUsecase(userRepo repository.UserRepository) *UserUsecase {
 }
 
 func (u *UserUsecase) AddUser(user entity.User) (err error) {
-	err = u.AddUser(user)
+	err = u.userRepository.AddUser(user)
 	return
 }

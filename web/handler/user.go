@@ -21,6 +21,10 @@ func (h *UserHandler) PostUser(c echo.Context) (err error) {
 	user := new(entity.User)
 	err = c.Bind(user)
 	if err != nil {
+		return echo.NewHTTPError(http.StatusBadRequest, "invalid params")
+	}
+	err = h.userUC.AddUser(*user)
+	if err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, "failed to register User")
 	}
 	return c.JSON(http.StatusCreated, user)
