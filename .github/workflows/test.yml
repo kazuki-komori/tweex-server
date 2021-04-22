@@ -9,7 +9,7 @@ jobs:
   build:
     name: Test
     env:
-      GO111MODULE: "on",
+      GO111MODULE: "on"
       PORT: 8080
     runs-on: ubuntu-latest
     steps:
