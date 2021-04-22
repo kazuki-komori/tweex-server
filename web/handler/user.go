@@ -9,11 +9,11 @@ import (
 )
 
 type UserHandler struct {
-	userUC *usecase.UserUsecase
+	UserUC *usecase.UserUsecase
 }
 
 func NewUserHandler(userUC *usecase.UserUsecase) *UserHandler {
-	return &UserHandler{userUC: userUC}
+	return &UserHandler{UserUC: userUC}
 }
 
 // POST /user/register ユーザーの登録
@@ -23,7 +23,7 @@ func (h *UserHandler) PostUser(c echo.Context) (err error) {
 	if err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, "invalid params")
 	}
-	err = h.userUC.AddUser(*user)
+	err = h.UserUC.AddUser(*user)
 	if err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest, "failed to register User")
 	}
