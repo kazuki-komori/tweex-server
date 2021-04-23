@@ -19,7 +19,6 @@ func NewUserRepository(sqlHandler SqlHandler) repository.UserRepository {
 
 func (r *Userrepository) AddUser(userEntity entity.User) error {
 	db := r.SqlHandler.db
-	defer db.Close()
 	dto := new(user)
 	dto.UID = userEntity.UID
 	dto.DisplayName = userEntity.DisplayName

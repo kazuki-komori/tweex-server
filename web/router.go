@@ -10,18 +10,21 @@ import (
 	"github.com/labstack/echo/middleware"
 )
 
-func NewServer(userUC *usecase.UserUsecase) {
+func NewServer(userUC *usecase.UserUsecase, tweetUC *usecase.TweetUsecase) {
 	e := echo.New()
 
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
 	userHandler := handler.NewUserHandler(userUC)
+	TweetHandler := handler.NewTweetHandler(tweetUC)
 
 	v1 := e.Group("/api/v1")
 
 	v1.GET("/health", health)
 	v1.POST("/user/register", userHandler.PostUser)
+	v1.POST("/tweet/register", TweetHandler.PostTweet)
+	v1.POST("/tweet/all", TweetHandler.GetTweetByID)
 
 	e.Logger.Fatal(e.Start(":" + os.Getenv("PORT")))
 }

@@ -17,5 +17,9 @@ func main() {
 	}
 	userRepo := database.NewUserRepository(*db)
 	userUC := usecase.NewUserUsecase(userRepo)
-	web.NewServer(userUC)
+
+	tweetRepo := database.NewTweetrRepository(*db)
+	tweetUC := usecase.NewTweetUsecase(tweetRepo)
+
+	web.NewServer(userUC, tweetUC)
 }

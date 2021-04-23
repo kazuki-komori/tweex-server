@@ -8,8 +8,9 @@ CREATE TABLE users (
     updated_at TIMESTAMP
 );
 CREATE TABLE tweets (
-    tid BIGINT PRIMARY KEY,
-    user_id VARCHAR(50) REFERENCES users(uid) ON DELETE SET NULL ON UPDATE CASCADE
+    t_id BIGINT NOT NULL,
+    user_id VARCHAR(50) REFERENCES users(uid) ON DELETE SET NULL ON UPDATE CASCADE,
+    PRIMARY KEY(t_id, user_id)
 );
 
 -- +migrate Down
