@@ -19,7 +19,7 @@ func NewTweetrRepository(sqlHandler SqlHandler) repository.TweetRepository {
 func (r *TweetRepository) AddTweet(tweetEntity entity.Tweet) error {
 	db := r.SqlHandler.db
 	dto := new(tweet)
-	dto.TID = tweetEntity.TID
+	dto.TweetID = tweetEntity.TweetID
 	dto.UserID = tweetEntity.UserID
 	res := db.Create(&dto)
 	fmt.Println(res.Error)
@@ -36,6 +36,7 @@ func (r *TweetRepository) GetTweetByUID(uid string) (tweets []entity.Tweet, err 
 }
 
 type tweet struct {
-	TID    int64  `json:"t_id"`
-	UserID string `json:"user_id"`
+	TweetID int64  `json:"tweet_id"`
+	UserID  string `json:"user_id"`
+	TagID   string `json:"tag_id"`
 }

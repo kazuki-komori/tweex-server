@@ -1,6 +1,7 @@
 package entity
 
 type Tweet struct {
-	TID    int64  `json:"t_id"`
-	UserID string `json:"user_id"`
+	TweetID int64  `json:"tweet_id"`
+	UserID  string `json:"user_id"`
+	TagID   string `json:"tag_id"`
 }
